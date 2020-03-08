@@ -5,9 +5,11 @@ import withColumnResize from './WithColumnResize';
 
 import '../../styles/grid/Header.css';
 
-const component = ({ columns, onStartColumnResize, headerRef }) => {
+const component = ({ columns, onStartColumnResize, headerRef, columnResizeStarted }) => {
+  const cls = `grid-header ${columnResizeStarted ? 'grid-header-column-resizing' : ''}`;
+
   return (
-    <div className="grid-header" ref={headerRef}>
+    <div className={cls} ref={headerRef}>
       {columns.map((x, index) => {
         const ColumnHeader = x.getHeaderComponent();
 

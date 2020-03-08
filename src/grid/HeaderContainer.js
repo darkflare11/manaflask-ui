@@ -53,6 +53,7 @@ export class HeaderContainer extends Component {
           onColumnResize={newWidth => this.onColumnResize(newWidth)}
           onEndColumnResize={() => this.onEndColumnResize()}
           onResize={rect => this.onHeaderResize(rect)}
+          columnResizeStarted={this.state.columnResizeStarted}
         />
         <ResizeMarker
           columns={this.props.columns}
