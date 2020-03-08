@@ -1,0 +1,7 @@
+.grid-column-resize-marker {
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  top: 0;
+  border-left: black solid 1px;
+}

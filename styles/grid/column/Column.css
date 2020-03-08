@@ -1,0 +1,25 @@
+.grid-column-header {
+  user-select: none;
+  display: flex;
+}
+
+.grid-column-header:hover {
+  background-color: #e6f1f6;
+}
+
+.grid-column-header-text {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 19px;
+  padding: 7px 10px 6px 10px;
+}
+
+.grid-column-resize-splitter {
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  cursor: col-resize;
+}

@@ -1,0 +1,28 @@
+.grid-table-container {
+  flex: 1;
+  overflow-y: scroll;
+}
+
+.grid-table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.grid-table-row-odd {
+  background-color: #f6f6f6;
+}
+
+.grid-table-cell {
+  user-select: none;
+}
+
+.grid-table-cell-inner {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: inherit;
+  font-size: 13px;
+  line-height: 19px;
+  padding: 7px 10px 6px 10px;
+  box-sizing: border-box;
+}
