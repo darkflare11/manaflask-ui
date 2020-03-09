@@ -1,0 +1,10 @@
+html, body, #root, .grid-container {
+  height: 100%;
+}
+
+.grid-container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #f6f6f6
+}
