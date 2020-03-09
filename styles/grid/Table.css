@@ -1,10 +1,4 @@
-.grid-table-container {
-  flex: 1;
-  overflow-y: scroll;
-}
-
 .grid-table {
-  width: 100%;
   border-spacing: 0px;
 }
 

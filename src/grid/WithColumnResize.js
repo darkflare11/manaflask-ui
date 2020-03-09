@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 
 import MouseTracker from '../utils/MouseTracker';
-import { getMinColumnWidth, getMaxColumnWidth, getColumnOffsetX } from './ColumnsSizePolicy';
+import { getMinColumnWidth, getColumnOffsetX } from './ColumnsSizePolicy';
 
 export default (Header) => {
   return class extends Component {
@@ -13,15 +13,15 @@ export default (Header) => {
       this.columnResizeStarted = false;
       this.resizingColumnIndex = null;
       this.minColumnWidth = null;
-      this.maxColumnWidth = null;
     }
 
     onGlobalMouseMove (e){
       if (this.columnResizeStarted){
-        const headerClientX = this.headerRef.current.getBoundingClientRect().left,
-          newColumnWidth = e.clientX - headerClientX - this.columnOffsetX,
+        const { left, width } = this.headerRef.current.getBoundingClientRect(),
+          newColumnWidth = e.clientX - left - this.columnOffsetX,
+          maxColumnWidth = width - this.columnOffsetX,
           columnTooSmall = newColumnWidth < this.minColumnWidth,
-          collumnTooLarge = newColumnWidth > this.maxColumnWidth;
+          collumnTooLarge = newColumnWidth > maxColumnWidth;
 
         if (!columnTooSmall && !collumnTooLarge){
           this.props.onColumnResize(newColumnWidth);
@@ -38,12 +38,13 @@ export default (Header) => {
     }
 
     onStartColumnResize (e, index){
+      const columns = this.props.columns;
+
       this.columnResizeStarted = true;
       this.resizingColumnIndex = index;
 
-      this.minColumnWidth = getMinColumnWidth(this.props.columns, this.props.columns[index]);
-      this.maxColumnWidth = getMaxColumnWidth(this.props.columns, this.props.columns[index]);
-      this.columnOffsetX = getColumnOffsetX(this.props.columns, this.props.columns[index]);
+      this.minColumnWidth = getMinColumnWidth(columns, columns[index]);
+      this.columnOffsetX = getColumnOffsetX(columns, columns[index]);
 
       this.props.onStartColumnResize(index);
     }

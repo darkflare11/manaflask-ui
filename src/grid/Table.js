@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 
+import { getColumnsWidth } from './ColumnsSizePolicy';
+
 import '../../styles/grid/Table.css';
 
-export function Table ({ columns, data, stripeRows, vScrollerWidth }){
+export function Table ({ columns, data, stripeRows, vScrollerWidth, containerWidth }){
+  const needFixLastCell = getColumnsWidth(columns) >= containerWidth;
+
   return (
     <table className="grid-table" cellPadding="0">
       <tbody>
@@ -13,8 +17,9 @@ export function Table ({ columns, data, stripeRows, vScrollerWidth }){
             return (
               <tr key={index} className={rowCls}>
                 {columns.map((y, index2) => {
-                  const currentWidth = y.getCurrentWidth(),
-                    width = index2 == columns.length - 1 ? currentWidth - vScrollerWidth : currentWidth,
+                  const isLastCell = index2 == columns.length - 1,
+                    currentWidth = y.getCurrentWidth(),
+                    width = isLastCell && needFixLastCell ? currentWidth - vScrollerWidth : currentWidth,
                     styles = width ? { width } : {},
                     CellComponent = y.getCellComponent();
 

@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Table } from './Table';
 import withResizeObserver from '../utils/WithResizeObserver';
 
+import '../../styles/grid/TableContainer.css';
+
 const VerticalScrollObserver = withResizeObserver(() => (<div/>));
 
 export class TableContainer extends Component {
@@ -15,10 +17,15 @@ export class TableContainer extends Component {
   }
 
   onScrollObserverResize ({ width }){
-    const containerWidth = this.containerRef.current.getBoundingClientRect().width,
-      vScrollerWidth = containerWidth - width;
+    const vScrollerWidth = this.getContainerWidth() - width;
 
     this.setState({ vScrollerWidth });
+  }
+
+  getContainerWidth (){
+    const containerDom = this.containerRef.current;
+
+    return containerDom ? containerDom.getBoundingClientRect().width : 0;
   }
 
   render (){
@@ -30,6 +37,7 @@ export class TableContainer extends Component {
         <Table
           {...this.props}
           vScrollerWidth={this.state.vScrollerWidth}
+          containerWidth={this.getContainerWidth()}
         />
       </div>
     )

@@ -1,0 +1,4 @@
+.grid-table-container {
+  flex: 1;
+  overflow-y: scroll;
+}
