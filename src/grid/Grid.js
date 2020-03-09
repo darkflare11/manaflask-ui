@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { HeaderContainer } from './HeaderContainer';
-import { Table } from './Table';
+import { TableContainer } from './TableContainer';
 import Column from './column/Column';
 
 import '../../styles/grid/Grid.css';
@@ -36,7 +36,7 @@ export class Grid extends Component {
           columns={this.state.columns}
           onColumnsSizeChanged={sizes => this.onColumnsSizeChanged(sizes)}
         />
-        <Table
+        <TableContainer
           columns={this.state.columns}
           data={this.props.data}
           stripeRows={this.props.stripeRows}
