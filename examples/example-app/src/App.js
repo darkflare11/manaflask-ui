@@ -21,6 +21,7 @@ function generateData (){
   return result;
 }
 
+//columns config 
 const columns = [{
     text: 'Column 1', fieldName: 'column1', resizible: true
   },{
